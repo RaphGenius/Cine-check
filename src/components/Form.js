@@ -11,7 +11,8 @@ const Form = () => {
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&query=${searchData}&language=fr-FR`
       )
-      .then((res) => res.data.results && setMoviesData(res.data.results));
+      .then((res) => res.data.results && setMoviesData(res.data.results))
+      .catch((err) => console.log(err));
   }, [searchData]);
 
   return (
@@ -23,14 +24,15 @@ const Form = () => {
           placeholder="Rechercher un film"
           onChange={(e) => setSearchData(e.target.value)}
         />
-        <input type="submit" value={"Rechercher"} />
+        <button>Top</button>
+        <button>Flop</button>
       </form>
       <div className="cards-container">
         {MoviesData.length === 0 ? (
           <p>Aucun film ne correspond à votre recherche</p>
         ) : (
           MoviesData.slice(0, 12).map((movie) => (
-            <Card key={movie.title} movie={movie} />
+            <Card key={movie.id} movie={movie} />
           ))
         )}
       </div>
