@@ -1,16 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 const Form = () => {
+  const [MoviesData, setMoviesData] = useState([]);
+  const [searchData, setSearchData] = useState("bob");
+  const ApiKey = process.env.REACT_APP_API_KEY;
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&query=${searchData}&language=fr-FR`
+      )
+      .then((res) => res.data.results && setMoviesData(res.data.results));
+  }, [searchData]);
+
   return (
     <div>
       <h2>Formulaire</h2>
       <form>
-        <input type="text" placeholder="Rechercher un film" />
+        <input
+          type="text"
+          placeholder="Rechercher un film"
+          onChange={(e) => setSearchData(e.target.value)}
+        />
         <input type="submit" value={"Rechercher"} />
       </form>
       <div className="cards-container">
-        <Card />
+        {MoviesData.length === 0 ? (
+          <p>Aucun film ne correspond à votre recherche</p>
+        ) : (
+          MoviesData.slice(0, 12).map((movie) => (
+            <Card key={movie.title} movie={movie} />
+          ))
+        )}
       </div>
     </div>
   );
