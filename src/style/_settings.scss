@@ -1,0 +1,27 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+$color1: #1e3d59;
+$color2: #f5f0e1;
+$color3: #ff6e40;
+$color4: #ffc13b;
+
+$white: white;
+$black: #333;
+
+$font1: "Roboto";
+
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
