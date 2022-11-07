@@ -2,8 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-  const title = document.querySelectorAll(".title span");
-
   return (
     <div className="header">
       <nav>

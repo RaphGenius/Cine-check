@@ -4,7 +4,13 @@ import Card from "./Card";
 
 const Form = () => {
   const [MoviesData, setMoviesData] = useState([]);
-  const [searchData, setSearchData] = useState("bob");
+  const [searchData, setSearchData] = useState("Star Wars");
+
+  let StorageData = window.localStorage.movies
+    ? window.localStorage.movies.split(",")
+    : [];
+  const [moviesInLs, setMoviesInLs] = useState(StorageData);
+
   console.log(MoviesData[0]);
   const ApiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
@@ -14,16 +20,16 @@ const Form = () => {
       )
       .then((res) => res.data.results && setMoviesData(res.data.results))
       .catch((err) => console.log(err));
-  }, [searchData]);
+  }, [searchData, ApiKey]);
 
   return (
     <div className="container-form">
       <form>
-        <label htmlFor="searchMovie"></label>
+        <label htmlFor="searchMovie">Rechercher un film</label>
         <input
           id="searchMovie"
           type="text"
-          placeholder="Rechercher un film..."
+          placeholder="Star wars"
           onChange={(e) => setSearchData(e.target.value)}
         />
         <div className="container-btn">
@@ -36,7 +42,12 @@ const Form = () => {
           <p>Aucun film ne correspond à votre recherche</p>
         ) : (
           MoviesData.slice(0, 12).map((movie) => (
-            <Card key={movie.id} movie={movie} />
+            <Card
+              key={movie.id}
+              movie={movie}
+              moviesInLs={moviesInLs}
+              setMoviesInLs={setMoviesInLs}
+            />
           ))
         )}
       </div>

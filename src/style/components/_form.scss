@@ -1,5 +1,9 @@
 .container-form {
   padding: $padding1;
+  label {
+    color: white;
+    margin-bottom: 10px;
+  }
   form {
     display: block;
     display: flex;

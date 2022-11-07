@@ -32,21 +32,22 @@
       font-size: 15px;
     }
   }
-}
-img {
-  display: block;
-  margin: 0 auto 10px;
-  width: 140px;
-  border-radius: 20px;
-  transition: 100ms ease all;
-  perspective: 2000px;
-  filter: grayscale(20%);
-  &:hover {
-    transform: scale(1.5) translateY(40px) translateZ(40px);
-    box-shadow: 0 0 15px rgba($color: #000000, $alpha: 1);
-    filter: grayscale(0) contrast(120%);
+  img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 140px;
+    border-radius: 20px;
+    transition: 100ms ease all;
+    perspective: 2000px;
+    filter: grayscale(20%);
+    &:hover {
+      transform: scale(1.5) translateY(40px) translateZ(40px);
+      box-shadow: 0 0 15px rgba($color: #000000, $alpha: 1);
+      filter: grayscale(0) contrast(120%);
+    }
   }
 }
+
 .movie-info-container {
   button {
     position: absolute;
@@ -62,9 +63,5 @@ img {
       color: $color1;
       transform: translateX(-50%) scale(1.05);
     }
-  }
-  .synopsis {
-    font-size: $smallfs;
-    text-overflow: ellipsis;
   }
 }

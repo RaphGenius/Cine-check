@@ -25,10 +25,16 @@ const Favorite = () => {
   return (
     <div className="home">
       <Header title={"Mes films favoris"} />
-      <div>
-        {favoriteMovies.map((movie) => (
-          <CardFavorite movie={movie} key={movie.id} />
-        ))}
+      <div className="favorite-container">
+        {favoriteMovies.length > 0 ? (
+          favoriteMovies.map((movie) => (
+            <CardFavorite movie={movie} key={movie.id} />
+          ))
+        ) : (
+          <h2 className="no-coupdecoeur">
+            Aucun coup de coeur pour le moment !
+          </h2>
+        )}
       </div>
     </div>
   );

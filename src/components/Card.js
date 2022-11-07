@@ -1,13 +1,18 @@
 import React from "react";
-
-const Card = ({ movie }) => {
+const Card = ({ movie, moviesInLs, setMoviesInLs }) => {
   const handleFav = () => {
     let StorageData = window.localStorage.movies
       ? window.localStorage.movies.split(",")
       : [];
     if (!StorageData.includes(movie.id.toString())) {
       StorageData.push(movie.id);
+      setMoviesInLs(StorageData);
       window.localStorage.movies = StorageData;
+    } else {
+      let newLs = StorageData.filter((id) => String(movie.id) !== id);
+      console.log(newLs);
+      setMoviesInLs(newLs);
+      window.localStorage.movies = newLs;
     }
   };
 
@@ -111,7 +116,11 @@ const Card = ({ movie }) => {
 
         {/*  {movie.overview ? <h3>Synopsis :</h3> : ""}
         <p className="synopsis">{movie.overview} </p> */}
-        <button onClick={() => handleFav()}> Ajouter aux favories</button>
+        <button onClick={() => handleFav()}>
+          {moviesInLs.includes(String(movie.id))
+            ? "Retirer des favories"
+            : "Ajouter aux favories"}
+        </button>
       </div>
     </div>
   );

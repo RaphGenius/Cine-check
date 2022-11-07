@@ -1,0 +1,10 @@
+.favorite-container {
+  padding: $padding1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  h2 {
+    color: white;
+    justify-content: center;
+  }
+}
