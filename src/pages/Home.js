@@ -4,9 +4,11 @@ import Header from "../components/Header";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Header title={"Cine Check"} />
-      <Form />
+      <main>
+        <Form />
+      </main>
     </div>
   );
 };

@@ -1,0 +1,54 @@
+.header {
+  position: relative;
+  background-color: $color1;
+  padding: $padding1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  nav {
+    a.nav-active {
+      color: $color2;
+      font-weight: bold;
+    }
+    position: absolute;
+    left: $padding1;
+    ul {
+      display: flex;
+      li:first-child {
+        margin-right: 20px;
+      }
+      a {
+        color: $black;
+        font-size: $averagefs;
+      }
+    }
+  }
+  h1 {
+    font-size: 50px;
+  }
+  .container-title {
+    position: relative;
+    width: 200px;
+    height: 80px;
+
+    span {
+      position: absolute;
+      -webkit-text-stroke: 0.2px;
+    }
+    .cine {
+      top: 0;
+      left: 0;
+      color: $color1;
+      -webkit-text-stroke-color: black;
+      z-index: 5;
+      border: none;
+    }
+    .check {
+      bottom: 0;
+      right: 0;
+      color: transparent;
+      -webkit-text-stroke-color: white;
+    }
+  }
+}

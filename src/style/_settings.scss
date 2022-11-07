@@ -5,17 +5,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  font-family: "Roboto", sans-serif;
-}
 
-$color1: #1e3d59;
-$color2: #f5f0e1;
-$color3: #ff6e40;
-$color4: #ffc13b;
+$color1: #fecc00;
+$color2: #262626;
+$color3: #1885c1;
 
 $white: white;
 $black: #333;
+$grey: #a7a8a8;
 
 $font1: "Roboto";
 
@@ -24,4 +21,18 @@ li {
 }
 a {
   text-decoration: none;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+$padding1: 20px;
+
+$bigfs: 30px;
+$averagefs: 15px;
+$smallfs: 12px;
+
+body {
+  background-color: $color2;
 }

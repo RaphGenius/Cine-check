@@ -1,0 +1,70 @@
+.card {
+  background-color: $color1;
+  border-radius: 5px;
+  width: 200px;
+  min-height: 400px;
+  padding: 10px 10px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  h2 {
+    text-align: center;
+    font-size: $averagefs;
+    font-weight: bold;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0;
+    li {
+      border: 1px solid black;
+      color: white;
+      padding: 4px 2px;
+      border-radius: 5px;
+      background-color: black;
+      margin-right: 5px;
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+  }
+}
+img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 140px;
+  border-radius: 20px;
+  transition: 100ms ease all;
+  perspective: 2000px;
+  filter: grayscale(20%);
+  &:hover {
+    transform: scale(1.5) translateY(40px) translateZ(40px);
+    box-shadow: 0 0 15px rgba($color: #000000, $alpha: 1);
+    filter: grayscale(0) contrast(120%);
+  }
+}
+.movie-info-container {
+  button {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    background-color: black;
+    padding: 4px 8px;
+    border-radius: 5px;
+    color: $white;
+    &:hover {
+      color: $color1;
+      transform: translateX(-50%) scale(1.05);
+    }
+  }
+  .synopsis {
+    font-size: $smallfs;
+    text-overflow: ellipsis;
+  }
+}

@@ -5,6 +5,7 @@ import Card from "./Card";
 const Form = () => {
   const [MoviesData, setMoviesData] = useState([]);
   const [searchData, setSearchData] = useState("bob");
+  console.log(MoviesData[0]);
   const ApiKey = process.env.REACT_APP_API_KEY;
   useEffect(() => {
     axios
@@ -16,16 +17,19 @@ const Form = () => {
   }, [searchData]);
 
   return (
-    <div>
-      <h2>Formulaire</h2>
+    <div className="container-form">
       <form>
+        <label htmlFor="searchMovie"></label>
         <input
+          id="searchMovie"
           type="text"
-          placeholder="Rechercher un film"
+          placeholder="Rechercher un film..."
           onChange={(e) => setSearchData(e.target.value)}
         />
-        <button>Top</button>
-        <button>Flop</button>
+        <div className="container-btn">
+          <button className="top">Top</button>
+          <button className="flop">Flop</button>
+        </div>
       </form>
       <div className="cards-container">
         {MoviesData.length === 0 ? (

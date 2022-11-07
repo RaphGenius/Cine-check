@@ -23,7 +23,7 @@ const Favorite = () => {
   }, []);
   console.log(favoriteMovies[0]);
   return (
-    <div>
+    <div className="home">
       <Header title={"Mes films favoris"} />
       <div>
         {favoriteMovies.map((movie) => (
