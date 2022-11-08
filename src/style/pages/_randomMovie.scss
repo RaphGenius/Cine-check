@@ -1,0 +1,24 @@
+.btn-getMovie {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  button {
+    cursor: pointer;
+    padding: 8px 16px;
+    background-color: $color1;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-size: $bigfs;
+    font-weight: bold;
+    transition: 50ms ease all;
+    &:hover {
+      transform: scale(1.1);
+      filter: brightness(110%);
+    }
+  }
+}
+.container-randomMovie {
+  padding: $padding1;
+}

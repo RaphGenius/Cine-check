@@ -8,14 +8,14 @@
   min-height: 80px;
   nav {
     a.nav-active {
-      color: $color2;
+      color: black;
       font-weight: bold;
     }
     position: absolute;
     left: $padding1;
     ul {
       display: flex;
-      li:first-child {
+      li {
         margin-right: 20px;
       }
       a {

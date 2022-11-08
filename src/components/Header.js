@@ -22,6 +22,14 @@ const Header = () => {
               Coup de coeur
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/film-aleatoire"
+              className={(nav) => (nav.isActive ? "nav-active" : "")}
+            >
+              Film aléatoire
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <div className="container-title">
