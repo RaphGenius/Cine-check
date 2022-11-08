@@ -1,3 +1,47 @@
+.container-randomMovie {
+  padding: $padding1;
+  display: flex;
+
+  .img-container {
+    max-width: 400px;
+    flex: 1;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .info-container {
+    flex: 2;
+    padding: $padding1;
+    background-color: $color1;
+    margin-left: 20px;
+    line-height: 25px;
+    .bold {
+      font-weight: bold;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 5px 0;
+      li {
+        border: 1px solid black;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 5px;
+        background-color: black;
+        margin-right: 5px;
+        margin-bottom: 2px;
+        font-size: 15px;
+      }
+    }
+    .synopsis {
+      padding: 10px;
+
+      border-top: 5px solid black;
+      border-left: 5px solid black;
+    }
+  }
+}
 .btn-getMovie {
   width: 100%;
   margin-top: 20px;
@@ -14,11 +58,7 @@
     font-weight: bold;
     transition: 50ms ease all;
     &:hover {
-      transform: scale(1.1);
       filter: brightness(110%);
     }
   }
-}
-.container-randomMovie {
-  padding: $padding1;
 }

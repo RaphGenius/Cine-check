@@ -5,7 +5,10 @@ import Header from "../components/Header";
 const RandomMovie = () => {
   const [movieData, setmovieData] = useState();
   const ApiKey = process.env.REACT_APP_API_KEY;
-
+  const budgetFormater = (price) => {
+    const newPrice = new Intl.NumberFormat().format(price);
+    return newPrice;
+  };
   const getRandomMovie = () => {
     let randomNumb = () => {
       let numb = Math.random() * 100000 + 1;
@@ -13,7 +16,7 @@ const RandomMovie = () => {
     };
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${randomNumb()}?api_key=${ApiKey}&language=fr-FR`
+        `https://api.themoviedb.org/3/movie/${randomNumb()}?api_key=${ApiKey}&language=fr-FR&adult=false`
       )
       .then((res) => {
         console.log(res.data);
@@ -25,7 +28,10 @@ const RandomMovie = () => {
         }
       });
   };
-
+  const formaterDate = (date) => {
+    const [yyyy, mm, dd] = date.split("-");
+    return [dd, mm, yyyy].join("/");
+  };
   return (
     <div>
       <Header />
@@ -33,10 +39,9 @@ const RandomMovie = () => {
         <button onClick={() => getRandomMovie()}>Afficher un film !</button>
       </div>
 
-      <div className="container-randomMovie">
-        {movieData && (
-          <div className="card">
-            <h1>{movieData.original_title}</h1>
+      {movieData && (
+        <div className="container-randomMovie">
+          <div className="img-container">
             <img
               src={
                 movieData.poster_path
@@ -46,23 +51,44 @@ const RandomMovie = () => {
               }
               alt={`Affiche du film ${movieData.title}`}
             />
-            <h4>
-              {movieData.vote_average}/10 <span>⭐</span>{" "}
-            </h4>
+          </div>
+          <div className="info-container">
+            <h2>{movieData.title}</h2>
+            <p>
+              <span className="bold">Titre original : </span>
+              {movieData.original_title}{" "}
+            </p>
+            <p>
+              <span className="bold">Sortie le :</span>{" "}
+              {formaterDate(movieData.release_date)}{" "}
+            </p>
+            <h4>Note: {movieData.vote_average.toFixed(1)}/10 </h4>
+            {movieData.budget !== 0 ? (
+              <p>
+                <span className="bold">Budget :</span>{" "}
+                {budgetFormater(movieData.budget)}$
+              </p>
+            ) : (
+              <p>
+                <span className="bold">Budget : NC</span>
+              </p>
+            )}
             <ul>
               {movieData.genres.map((genre, index) => (
                 <li key={index}>{genre.name} </li>
               ))}
             </ul>
-            {movieData.budget !== 0 ? (
-              <p>Budget : {movieData.budget}$ </p>
+            {movieData.overview ? (
+              <p className="synopsis">
+                <span className="bold">Synopsis :</span> <br></br>{" "}
+                {movieData.overview}{" "}
+              </p>
             ) : (
-              <p>Budget : non communiqué</p>
+              "Aucune description disponible"
             )}
-            {movieData.overview && <p>{movieData.overview} </p>}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
