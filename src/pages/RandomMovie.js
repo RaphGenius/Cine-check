@@ -27,6 +27,7 @@ const RandomMovie = () => {
       .then((res) => {
         setTimeout(() => {
           setmovieData(res.data);
+          setIsOpen(true);
         }, 1000);
       })
       .catch((err) => {
@@ -34,9 +35,6 @@ const RandomMovie = () => {
           getRandomMovie();
         }
       });
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 1000);
   };
   const formaterDate = (date) => {
     const [yyyy, mm, dd] = date.split("-");
