@@ -2,40 +2,57 @@ import axios from "axios";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { motion } from "framer-motion";
+
 const RandomMovie = () => {
   const [isOpen, setIsOpen] = useState(true);
   const ApiKey = process.env.REACT_APP_API_KEY;
+  const [isLock, setIsLock] = useState(false);
+
   const variants = {
     open: { opacity: 1, x: 0, transition: { duration: 1 } },
     closed: { opacity: 0, x: "-100%", transition: { duration: 1 } },
   };
+
   const [movieData, setmovieData] = useState();
+  // Separateur des miliers pour le prix
   const budgetFormater = (price) => {
     const newPrice = new Intl.NumberFormat().format(price);
     return newPrice;
   };
+  //Récuperer un film aléatoirement
+  //Génère un ID aléatoire, si rien ne correspond, la fonction se rejoue
   const getRandomMovie = () => {
-    setIsOpen(false);
-    let randomNumb = () => {
-      let numb = Math.random() * 100000 + 1;
-      return Math.floor(numb);
-    };
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${randomNumb()}?api_key=${ApiKey}&language=fr-FR&adult=false`
-      )
-      .then((res) => {
-        setTimeout(() => {
-          setmovieData(res.data);
-          setIsOpen(true);
-        }, 1000);
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          getRandomMovie();
-        }
-      });
+    if (isLock) {
+      return;
+    } else {
+      console.log(isLock);
+      setIsLock(true);
+      setIsOpen(false);
+      let randomNumb = () => {
+        let numb = Math.random() * 100000 + 1;
+        return Math.floor(numb);
+      };
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${randomNumb()}?api_key=${ApiKey}&language=fr-FR&adult=false`
+        )
+        .then((res) => {
+          setTimeout(() => {
+            setmovieData(res.data);
+            setIsOpen(true);
+          }, 1000);
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            getRandomMovie();
+          }
+        });
+    }
+    setTimeout(() => {
+      setIsLock(false);
+    }, 2500);
   };
+
   const formaterDate = (date) => {
     const [yyyy, mm, dd] = date.split("-");
     return [dd, mm, yyyy].join("/");

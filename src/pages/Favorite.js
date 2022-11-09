@@ -37,6 +37,7 @@ const Favorite = () => {
           `https://api.themoviedb.org/3/movie/${movieId[i]}?api_key=${ApiKey}`
         )
         .then((res) =>
+          //Pour chaque id dans le LS, fait une recherche et le concatène
           setFavoriteMovies((movieData) => [...movieData, res.data])
         );
     }

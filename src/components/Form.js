@@ -4,6 +4,19 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { motion } from "framer-motion";
 const Form = () => {
+  //Accueil les infos des films de l'api
+  const [MoviesData, setMoviesData] = useState([]);
+  // Le nom du film recherché (Si l'utilisateur a déjà fait une recherche, elle est enregistré dans le SS)
+  const [searchData, setSearchData] = useState(
+    !window.sessionStorage.search ? "" : window.sessionStorage.search
+  );
+  const [sortGoodBad, setSortGoodBad] = useState(null);
+  const [rangeValue, setRangeValue] = useState(12);
+  //Vérifie si l'utilisateur a déjà fait une recherche
+  const [sessionStorageData, setSessionStorageDate] = useState(
+    window.sessionStorage.search ? window.sessionStorage.search : null
+  );
+  const ApiKey = process.env.REACT_APP_API_KEY;
   //Données pour framer motion, permettant de creer l'animation
   const variants = {
     initial: {
@@ -23,16 +36,8 @@ const Form = () => {
       x: -100,
     },
   };
-  const [MoviesData, setMoviesData] = useState([]);
-  const [searchData, setSearchData] = useState(
-    !window.sessionStorage.search ? "" : window.sessionStorage.search
-  );
-  const [sortGoodBad, setSortGoodBad] = useState(null);
-  const [rangeValue, setRangeValue] = useState(12);
-  const [sessionStorageData, setSessionStorageDate] = useState(
-    window.sessionStorage.search ? window.sessionStorage.search : null
-  );
 
+  //Permet de faire la recherche pour le film + inscrit ce que l'utilisateur écrit dans le ss
   const handleSearch = (search) => {
     console.log(search);
     setSearchData(search);
@@ -43,7 +48,7 @@ const Form = () => {
     ? window.localStorage.movies.split(",")
     : [];
   const [moviesInLs, setMoviesInLs] = useState(StorageData);
-  const ApiKey = process.env.REACT_APP_API_KEY;
+
   useEffect(() => {
     axios
       .get(
@@ -52,6 +57,7 @@ const Form = () => {
       .then((res) => res.data.results && setMoviesData(res.data.results))
       .catch((err) => console.log(err));
 
+    //Animation au montage du composant
     const formRange = document.querySelector(".form-range");
     formRange.classList.add("animeIn");
   }, [searchData, ApiKey]);
@@ -106,10 +112,10 @@ const Form = () => {
           MoviesData.slice(0, rangeValue)
             .sort((a, b) => {
               if (sortGoodBad === "goodToBad") {
-                return b.popularity - a.popularity;
+                return b.vote_average - a.vote_average;
               }
               if (sortGoodBad === "badToGood") {
-                return a.popularity - b.popularity;
+                return a.vote_average - b.vote_average;
               }
             })
             .map((movie) => (
