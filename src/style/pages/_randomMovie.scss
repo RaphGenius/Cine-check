@@ -1,19 +1,11 @@
+.RandomMoviePage {
+  overflow-x: hidden;
+}
 .container-randomMovie {
   padding: $padding1;
   display: flex;
-  animation: inMovie 1s forwards;
-
-  @keyframes inMovie {
-    0% {
-      transform: translateX(1000px);
-    }
-    50% {
-      transform: translate(1000px);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
+  z-index: -2;
+  margin-bottom: 50px;
 
   .img-container {
     max-width: 400px;
@@ -73,5 +65,22 @@
     &:hover {
       filter: brightness(110%);
     }
+  }
+}
+
+.animationOut {
+  animation: FadeOut 5s forwards;
+}
+.animationIn {
+  animation: Fadein 5s forwards;
+}
+@keyframes FadeIn {
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes FadeOut {
+  to {
+    transform: scale(0);
   }
 }

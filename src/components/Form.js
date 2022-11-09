@@ -101,6 +101,7 @@ const Form = () => {
             })
             .map((movie) => (
               <Card
+                className="truc"
                 key={movie.id}
                 movie={movie}
                 moviesInLs={moviesInLs}
