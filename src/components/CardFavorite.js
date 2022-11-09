@@ -1,6 +1,7 @@
 import React from "react";
 
 const CardFavorite = ({ movie }) => {
+  //Permet de retirer l'id du film du Local Storage
   const removeLS = () => {
     let StorageData = window.localStorage.movies
       ? window.localStorage.movies.split(",")

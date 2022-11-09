@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { motion } from "framer-motion";
 const Form = () => {
+  //Données pour framer motion, permettant de creer l'animation
   const variants = {
     initial: {
       opacity: 0,
@@ -23,10 +24,21 @@ const Form = () => {
     },
   };
   const [MoviesData, setMoviesData] = useState([]);
-  const [searchData, setSearchData] = useState("Star Wars");
+  const [searchData, setSearchData] = useState(
+    !window.sessionStorage.search ? "" : window.sessionStorage.search
+  );
   const [sortGoodBad, setSortGoodBad] = useState(null);
   const [rangeValue, setRangeValue] = useState(12);
+  const [sessionStorageData, setSessionStorageDate] = useState(
+    window.sessionStorage.search ? window.sessionStorage.search : null
+  );
 
+  const handleSearch = (search) => {
+    console.log(search);
+    setSearchData(search);
+    sessionStorage.setItem("search", search);
+    setSessionStorageDate(search);
+  };
   let StorageData = window.localStorage.movies
     ? window.localStorage.movies.split(",")
     : [];
@@ -52,9 +64,10 @@ const Form = () => {
           <input
             id="searchMovie"
             type="text"
-            placeholder="Star wars"
+            placeholder="Exemple : Star wars"
             autoComplete="off"
-            onChange={(e) => setSearchData(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
+            defaultValue={sessionStorageData}
           />
           <div className="container-btn">
             <div className="top" onClick={() => setSortGoodBad("goodToBad")}>
@@ -88,7 +101,7 @@ const Form = () => {
         variants={variants}
       >
         {MoviesData.length === 0 ? (
-          <p>Aucun film ne correspond à votre recherche</p>
+          <p className="noMovie">Aucun film ne correspond à votre recherche</p>
         ) : (
           MoviesData.slice(0, rangeValue)
             .sort((a, b) => {

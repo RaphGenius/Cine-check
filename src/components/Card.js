@@ -1,5 +1,6 @@
 import React from "react";
 const Card = ({ movie, moviesInLs, setMoviesInLs }) => {
+  //Permet d'ajouter ou retirer du local storage
   const handleFav = () => {
     let StorageData = window.localStorage.movies
       ? window.localStorage.movies.split(",")
@@ -16,10 +17,12 @@ const Card = ({ movie, moviesInLs, setMoviesInLs }) => {
     }
   };
 
+  // Permet de formater la date en format jj/mm/aaaa (date reçu par l'api en aaaa-mm--dd)
   const dateFormater = (date) => {
     let [yyyy, mm, dd] = date.split("-");
     return [dd, mm, yyyy].join(".");
   };
+  // Switch permetant d'avoir accès à tous les genres et affichers le genre correspondant à l'id envoyé par l'api
   const genreFinder = () => {
     let genreArray = [];
     for (let i = 0; i < movie.genre_ids.length; i++) {
@@ -114,8 +117,6 @@ const Card = ({ movie, moviesInLs, setMoviesInLs }) => {
               ))}
         </ul>
 
-        {/*  {movie.overview ? <h3>Synopsis :</h3> : ""}
-        <p className="synopsis">{movie.overview} </p> */}
         <button onClick={() => handleFav()}>
           {moviesInLs.includes(String(movie.id))
             ? "Retirer des favories"
