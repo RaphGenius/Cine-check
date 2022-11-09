@@ -14,6 +14,8 @@ const RandomMovie = () => {
       let numb = Math.random() * 100000 + 1;
       return Math.floor(numb);
     };
+    const body = document.querySelector(".container-randomMovie");
+    console.log(body);
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${randomNumb()}?api_key=${ApiKey}&language=fr-FR&adult=false`

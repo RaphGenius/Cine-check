@@ -73,3 +73,20 @@
     width: 200px;
   }
 }
+.form-range {
+  opacity: 0;
+}
+.animeIn {
+  animation: fadein 0.5s forwards;
+}
+
+@keyframes fadein {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
