@@ -75,3 +75,13 @@
     }
   }
 }
+
+@media all and (max-width: 1000px) {
+  .header {
+    justify-content: flex-end;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

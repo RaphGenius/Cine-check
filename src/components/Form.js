@@ -31,6 +31,7 @@ const Form = () => {
           id="searchMovie"
           type="text"
           placeholder="Star wars"
+          autoComplete="off"
           onChange={(e) => setSearchData(e.target.value)}
         />
         <div className="container-btn">

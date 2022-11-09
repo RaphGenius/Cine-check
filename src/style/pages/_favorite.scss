@@ -2,9 +2,15 @@
   padding: $padding1;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  h2 {
+}
+.home {
+  .second-title {
+    position: relative;
+    text-align: center;
     color: white;
-    justify-content: center;
+    margin-top: 15px;
   }
 }

@@ -25,6 +25,7 @@ const Favorite = () => {
   return (
     <div className="home">
       <Header title={"Mes films favoris"} />
+      <h2 className="second-title">Mes coups de coeurs</h2>
       <div className="favorite-container">
         {favoriteMovies.length > 0 ? (
           favoriteMovies.map((movie) => (
